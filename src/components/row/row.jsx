@@ -1,7 +1,12 @@
+import Letter from "../letter/letter"
+import styles from "./row.module.scss"
+
 const Row = () => {
   return (
-    <div>
-
+    <div className={styles.row}>
+      {new Array(5).fill(0).map((_, i) => {
+        return <Letter key={i} />
+      })}
     </div>
   )
 }

@@ -1,7 +1,8 @@
+import styles from './letter.module.scss'
 const Letter = () => {
   return (
-    <div>
-
+    <div className={styles.letter}>
+      
     </div>
   )
 }
