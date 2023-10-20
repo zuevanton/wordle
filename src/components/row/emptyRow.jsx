@@ -1,14 +1,14 @@
 import Letter from "../letter/letter"
 import styles from "./row.module.scss"
 
-const Row = () => {
+const EmptyRow = () => {
   return (
     <div className={styles.row}>
-      {new Array(5).fill(0).map((_, i) => {
+      {Array(5).fill(0).map((_, i) => {
         return <Letter key={i} />
       })}
     </div>
   )
 }
 
-export default Row
+export default EmptyRow

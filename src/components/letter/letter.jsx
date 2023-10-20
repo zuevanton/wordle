@@ -1,8 +1,8 @@
 import styles from './letter.module.scss'
-const Letter = () => {
+const Letter = ({letter, color}) => {
   return (
-    <div className={styles.letter}>
-      
+    <div className={styles.letter} style={{backgroundColor: [color]}}>
+      {letter}
     </div>
   )
 }
