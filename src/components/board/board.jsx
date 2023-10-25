@@ -8,7 +8,6 @@ const Board = ({secretWord, currentWord, guesses}) => {
     <div>
       {guesses.map((guess, i) => {
         return <FullFilledRow key={i}
-          secretWord={secretWord} 
           guess={guess} 
           statuses={paintWord(secretWord, guess)} 
         />

@@ -1,4 +1,4 @@
-// import styles from "./keyboard.module.scss"
+import styles from "./keyboard.module.scss"
 import { useEffect } from "react";
 const Keyboard = ({onLetterPress, onEnterPress, onBackspacePress}) => {
 
@@ -21,11 +21,21 @@ const Keyboard = ({onLetterPress, onEnterPress, onBackspacePress}) => {
     return () => window.removeEventListener('keydown', keyupListener)
   }, [])
 
+  const keys = [
+    ['q','w','e','r','t','y','u','i','o','p'],
+    ['a','s','d','f','g','h','j','k','l'],
+    ['z','x','c','v','b','n','m']
+  ]
+
   return (
-    <div>
-      QWERTYUIOP<br/>
-      ASDFGHJKL<br/>
-      ZXCVBNM<br/>
+    <div className={styles.keyboard}>
+      {
+        keys.map((x, i) => {
+          return <div key={i} className={styles.row}>
+            {x.map(key => <div key={key} className={styles.key}>{key}</div>)}
+          </div>
+        })
+      }
     </div>
   )
 }
