@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styles from './App.module.scss'
 import Board from './components/board/board'
 import Keyboard from './components/keyboard/keyboard';
