@@ -1,39 +1,46 @@
 import { useEffect, useState } from 'react'
 import styles from './App.module.scss'
 import Board from './components/board/board'
+import Keyboard from './components/keyboard/keyboard';
+
+
+let win = false;
+let lose = false;
 
 function App() {
-
-  const [secretWord, setSecretWord] = useState('hello')
-  const [guesses, setGuesses] = useState(['asdfg', 'sdfgg'])
-  const [currentWord, setCurrentWord] = useState('')
+  const [state, setState] = useState({
+    secretWord: 'peace',
+    guesses: ['sport', 'greed', 'eagle', 'award', 'salad', 'peace'],
+    currentWord: ''
+  })
+  const {secretWord, guesses, currentWord} = state;
 
   const makeGuess = () => {
-    if(currentWord.length === 5){
-      setGuesses(prev => [...prev, currentWord])
-      setCurrentWord('')
-    }
+    setState(prev => {
+      if(prev.currentWord.length === 5){
+        return {
+          ...prev,
+          guesses: [...prev.guesses, prev.currentWord],
+          currentWord: ''
+        }
+      } else return prev
+    })
   }
 
-  const keyupListener = e => {
-    const letter = e.key.toLowerCase();
-    if(letter === 'enter') {
-      return makeGuess()
-    }
-    if(letter === 'backspace') {
-      return setCurrentWord(prev => prev.slice(0, prev.length - 1))
-    }
-    if(letter.match(/^[a-z]$/) && currentWord.length < 5){
-      setCurrentWord(prev => prev + letter)
-    }
+  const onLetterPress = (letter) => {
+    setState(prev => {
+      if(prev.currentWord.length < 5) {
+        return {...prev, currentWord: prev.currentWord + letter}
+      } else {
+        return prev
+      }
+    })
+  }
+
+  const onBackspacePress = () => {
+    setState(prev => ({...prev, currentWord: prev.currentWord.slice(0, prev.length - 1)}))
   }
   
-  useEffect(() => {
-    window.addEventListener('keydown', keyupListener)
-
-    return () => window.removeEventListener('keydown', keyupListener)
-  }, [currentWord])
-
   return (
     <div className={styles.App} >
       <h1>Wordle</h1>
@@ -41,9 +48,12 @@ function App() {
         secretWord={secretWord}
         guesses={guesses}
         currentWord={currentWord}
-        setGuesses={setGuesses}
-        setCurrentWord={setCurrentWord}
        />
+       <h2>
+        {win && 'Победа!'}
+        {lose && 'Вы проиграли!'}
+       </h2>
+      <Keyboard onLetterPress={onLetterPress} onEnterPress={makeGuess} onBackspacePress={onBackspacePress} />
     </div>
   )
 }
