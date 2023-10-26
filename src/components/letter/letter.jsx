@@ -1,6 +1,5 @@
 import styles from './letter.module.scss'
 const Letter = ({letter, status}) => {
-  console.log(status)
   const colors = {
     'right': 'green',
     'wrong place': 'yellow',
