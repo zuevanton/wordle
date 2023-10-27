@@ -18,7 +18,7 @@ describe("paintWord", () => {
 
       expect(actualResult).toEqual(expetedResult);
     });
-    it.skip("guess === AWARD", () => {
+    it("guess === AWARD", () => {
       const actualResult = paintWord("PEACE", "AWARD");
       const expetedResult = [
         'wrong',
