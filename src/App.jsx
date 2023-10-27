@@ -59,7 +59,11 @@ function App() {
         {win && 'Победа!'}
         {lose && 'Вы проиграли!'}
        </h2>
-      <Keyboard onLetterPress={onLetterPress} onEnterPress={makeGuess} onBackspacePress={onBackspacePress} />
+      <Keyboard
+        onLetterPress={onLetterPress}
+        onEnterPress={makeGuess}
+        onBackspacePress={onBackspacePress}
+      />
     </div>
   )
 }
