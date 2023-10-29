@@ -1,4 +1,4 @@
-import { paintWord } from "../../paintword"
+import { paintWord } from "../../utils/paintword/paintword"
 import CurrentRow from "../row/currentRow"
 import EmptyRow from "../row/emptyRow"
 import FullFilledRow from "../row/fullFilledRow"

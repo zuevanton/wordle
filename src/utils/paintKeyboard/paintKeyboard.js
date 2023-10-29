@@ -1,4 +1,4 @@
-import { paintWord } from "./paintword";
+import { paintWord } from "../paintword/paintword";
 
 export const paintKeyboard = (secret, guesses) => {
   const letters = {};
