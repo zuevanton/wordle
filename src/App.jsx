@@ -3,7 +3,7 @@ import styles from './App.module.scss'
 import Board from './components/board/board'
 import Keyboard from './components/keyboard/keyboard';
 import { words } from './words';
-
+import { paintKeyboard } from './utils/paintKeyboard/paintKeyboard';
 
 let win = false;
 let lose = false;
@@ -42,9 +42,9 @@ function App() {
       }
     })
   }
-
+  
   const onBackspacePress = () => {
-    setState(prev => ({...prev, currentWord: prev.currentWord.slice(0, prev.length - 1)}))
+    setState(prev => ({...prev, currentWord: prev.currentWord.slice(0, prev.currentWord.length - 1)}))
   }
   
   return (
@@ -63,6 +63,7 @@ function App() {
         onLetterPress={onLetterPress}
         onEnterPress={makeGuess}
         onBackspacePress={onBackspacePress}
+        statuses={paintKeyboard(secretWord, guesses)}
       />
     </div>
   )

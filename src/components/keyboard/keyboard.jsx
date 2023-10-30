@@ -1,7 +1,7 @@
 import styles from "./keyboard.module.scss"
 import { useEffect } from "react";
-const Keyboard = ({onLetterPress, onEnterPress, onBackspacePress}) => {
-
+const Keyboard = ({onLetterPress, onEnterPress, onBackspacePress, statuses}) => {
+  console.log(statuses)
   const keyupListener = e => {
     const letter = e.key.toLowerCase();
     if(letter === 'enter') {
@@ -32,7 +32,22 @@ const Keyboard = ({onLetterPress, onEnterPress, onBackspacePress}) => {
       {
         keys.map((x, i) => {
           return <div key={i} className={styles.row}>
-            {x.map(key => <div key={key} className={styles.key}>{key}</div>)}
+            {x.map(key => {
+              let color = 'transparent';
+              if(statuses[key] === 'wrong') {
+                color = 'gray'
+              } else if (statuses[key] === 'wrong place') {
+                color = 'yellow'
+              } else if (statuses[key] === 'right') {
+                color = 'green'
+              }
+              return <div 
+                key={key} 
+                className={styles.key}
+                style={{backgroundColor: color}} >
+                  {key}
+              </div>
+            })}
           </div>
         })
       }

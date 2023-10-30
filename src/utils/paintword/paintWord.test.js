@@ -1,7 +1,3 @@
-// test runner            →  describe test/it
-// assertion library      →  expect
-
-// jest
 import { describe, it, expect } from 'vitest';
 import { paintWord } from "./paintword";
 describe("paintWord", () => {

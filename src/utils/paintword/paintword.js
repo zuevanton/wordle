@@ -9,7 +9,6 @@ export const paintWord = (secret, guess) => {
     }
   }
   for(let i = 0; i < guess.length; i++) {
-    console.log(rights[guess[i]]?.includes(i))
     if(rights[guess[i]]?.includes(i)) continue
     if(secret.includes(guess[i]) && secret[i] !== guess[i] && rights[guess[i]]?.includes(i) !== false){
       statuses[i] = 'wrong place'
@@ -21,4 +20,3 @@ export const paintWord = (secret, guess) => {
   }
   return statuses
 }
-console.log(paintWord("PEACE", "AWARD"))
