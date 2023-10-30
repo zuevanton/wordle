@@ -24,4 +24,5 @@ const Board = ({secretWord, currentWord, guesses}) => {
   )
 }
 
+
 export default Board
