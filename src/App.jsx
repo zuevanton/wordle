@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react'
 import styles from './App.module.scss'
-import Board from './components/board/board'
+import {Board} from './components/board/board'
 import Keyboard from './components/keyboard/keyboard';
 import { words } from './words';
 import { paintKeyboard } from './utils/paintKeyboard/paintKeyboard';
 
-let win = false;
-let lose = false;
 
 function App() {
   const [state, setState] = useState({
@@ -15,6 +13,8 @@ function App() {
     currentWord: ''
   })
   const {secretWord, guesses, currentWord} = state;
+  let win = guesses.at(-1) === secretWord;
+  let lose = !win && guesses.length === 6;
 
   useEffect(() => {
     const newSecretWord = words[Math.floor(Math.random() * words.length)];

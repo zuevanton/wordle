@@ -1,9 +1,10 @@
 import { paintWord } from "../../utils/paintword/paintword"
-import CurrentRow from "../row/currentRow"
-import EmptyRow from "../row/emptyRow"
-import FullFilledRow from "../row/fullFilledRow"
+import {CurrentRow} from "../row/currentRow"
+import {EmptyRow} from "../row/emptyRow"
+import {FullFilledRow} from "../row/fullFilledRow"
 
-const Board = ({secretWord, currentWord, guesses}) => {
+export const Board = ({secretWord, currentWord, guesses}) => {
+  const isWin = guesses.at(-1) === secretWord;
   return (
     <div>
       {guesses.map((guess, i) => {
@@ -14,7 +15,11 @@ const Board = ({secretWord, currentWord, guesses}) => {
       })}
       {guesses.length !== 6 && (
         <>
-          <CurrentRow currentWord={currentWord} secretWord={secretWord} />
+          {isWin ? 
+          <EmptyRow />
+          :
+          <CurrentRow currentWord={currentWord} secretWord={secretWord} />}
+          
           {Array(6 - guesses.length - 1).fill(0).map((_, i) => {
             return <EmptyRow key={i} />
           })}
@@ -23,6 +28,3 @@ const Board = ({secretWord, currentWord, guesses}) => {
     </div>
   )
 }
-
-
-export default Board

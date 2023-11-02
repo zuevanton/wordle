@@ -1,7 +1,7 @@
 import Letter from "../letter/letter"
 import styles from "./row.module.scss"
 
-const EmptyRow = () => {
+export const EmptyRow = () => {
   return (
     <div className={styles.row}>
       {Array(5).fill(0).map((_, i) => {
@@ -11,4 +11,3 @@ const EmptyRow = () => {
   )
 }
 
-export default EmptyRow
